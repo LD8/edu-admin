@@ -2,7 +2,7 @@
   <el-container>
     <el-aside width="200px"><app-aside /></el-aside>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header><app-header /></el-header>
       <el-main>
         <!-- 子路由出口 -->
         <router-view />
@@ -12,15 +12,17 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import AppAside from './components/app-aside'
+import Vue from "vue";
+import AppAside from "./components/app-aside";
+import AppHeader from "./components/app-header";
 
 export default Vue.extend({
-  name: 'Layout',
+  name: "Layout",
   components: {
-    AppAside
+    AppAside,
+    AppHeader
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
@@ -32,7 +34,7 @@ export default Vue.extend({
   background: rgb(227, 227, 227);
 }
 .el-header {
-  background: rgb(182, 182, 182);
+  background: rgb(218, 218, 218);
 }
 .el-main {
   background: rgb(233, 233, 233);
