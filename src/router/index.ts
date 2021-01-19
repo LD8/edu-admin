@@ -39,6 +39,17 @@ const routes: Array<RouteConfig> = [
           /* webpackChunkName: 'role' */ import("@/views/role/index.vue")
       },
       {
+        path: "/role/:roleId/alloc-menu",
+        name: "alloc-menu",
+        component: () =>
+          /* webpackChunkName: 'alloc-menu' */ import(
+            "@/views/role/components/alloc-menu.vue"
+          ),
+        // 将路由路径参数映射到组件的 props 中
+        // 这样成功将组件与路由解耦，组件可以从父级组件中获取 props 也可以从路由中获取
+        props: true
+      },
+      {
         path: "/menu",
         name: "menu",
         component: () =>
