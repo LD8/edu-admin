@@ -33,6 +33,7 @@ module.exports = {
           requireLast: true
         }
       }
-    ]
+    ],
+    "@typescript-eslint/no-explicit-any": ["off"]
   }
 };

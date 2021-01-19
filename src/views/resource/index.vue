@@ -1,14 +1,17 @@
 <template>
-  <div>广告管理</div>
+  <div class="resource"><resource-list /></div>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import Vue from "vue";
+import ResourceList from "./components/List.vue";
 
 export default Vue.extend({
-  name: 'AdvertIndex'
-})
+  name: "ResourceIndex",
+  components: {
+    ResourceList
+  }
+});
 </script>
 
-<style scoped>
-</style>
+<style lang="scss" scoped></style>
