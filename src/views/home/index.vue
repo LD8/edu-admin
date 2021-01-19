@@ -1,14 +1,13 @@
 <template>
-  <div>广告管理</div>
+  <div>首页</div>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import Vue from "vue";
 
 export default Vue.extend({
-  name: 'AdvertIndex'
-})
+  name: "HomeINdex"
+});
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
