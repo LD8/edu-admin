@@ -31,7 +31,7 @@
             width="30px"
             :src="
               scope.row.portrait ||
-                'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
+              'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
             "
           />
         </template>
@@ -65,7 +65,12 @@
     </el-table>
     <!-- 对话框 -->
     <el-dialog title="分配角色" :visible.sync="dialogVisible" width="50%">
-      <el-select v-model="roleIdList" multiple placeholder="请选择" style="width: 100%">
+      <el-select
+        v-model="roleIdList"
+        multiple
+        placeholder="请选择"
+        style="width: 100%"
+      >
         <el-option
           v-for="item in roles"
           :key="item.id"
@@ -99,13 +104,13 @@ export default Vue.extend({
         phone: "",
         startCreateTime: "",
         endCreateTime: "",
-        rangeDate: []
+        rangeDate: [],
       },
       loading: true,
       dialogVisible: false,
       roles: [],
       roleIdList: [],
-      currentUser: null // 分配角色的当前用户
+      currentUser: null, // 分配角色的当前用户
     };
   },
 
@@ -151,7 +156,7 @@ export default Vue.extend({
       this.roles = data.data;
 
       const {
-        data: { data: userRoles }
+        data: { data: userRoles },
       } = await getUserRoles((this.currentUser as any).id);
       this.roleIdList = userRoles.map((item: any) => item.id);
 
@@ -160,14 +165,14 @@ export default Vue.extend({
     },
 
     async handleAllocRole() {
-      const { data } = await allocateUserRoles({
+      await allocateUserRoles({
         userId: (this.currentUser as any).id,
-        roleIdList: this.roleIdList
+        roleIdList: this.roleIdList,
       });
       this.$message.success("操作成功");
       this.dialogVisible = false;
-    }
-  }
+    },
+  },
 });
 </script>
 
