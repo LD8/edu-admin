@@ -68,8 +68,8 @@
             >
               删除
             </el-button>
-          </template></el-table-column
-        >
+          </template>
+        </el-table-column>
       </el-table>
       <!--
         total 总记录数
@@ -147,6 +147,7 @@ export default Vue.extend({
     handleEdit(row: any) {
       this.$router.push({ name: "menu-edit", params: { id: row.id } });
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     handleDelete(row: any) {
       this.$confirm("确认删除吗？", "删除提示", {})
         // eslint-disable-next-line space-before-function-paren
