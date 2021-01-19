@@ -1,4 +1,14 @@
 <template>
+  <!--
+    upload 上传文件组件，它支持自动上传，你只需要把上传需要参数配置一下就可以了
+    -->
+  <!--
+    1. 组件需要根据绑定的数据（course.courseListImg）进行图片预览
+    2. 组件需要把上传成功的图片地址同步到绑定的数据中 (使用 CourseImage 组件时 v-model 绑定的 course.courseListImg)
+    v-model 的本质还是父子组件通信
+      1. 它会给子组件传递一个名字叫 value 的数据（通过 props 传递接收）
+      2. 默认监听 input 事件，修改绑定的数据（自定义事件）
+    -->
   <div class="course-image">
     <el-progress
       v-if="isUploading"
@@ -12,9 +22,10 @@
       class="avatar-uploader"
       action="https://jsonplaceholder.typicode.com/posts/"
       :show-file-list="false"
-      :before-upload="beforeAvatarUpload"
+      :before-upload="beforeUpload"
       :http-request="handleUpload"
     >
+      <!-- 绑定父组件 v-model 绑定传入的 course.courseListImg -->
       <img v-if="value" :src="value" class="avatar" />
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
     </el-upload>
@@ -29,6 +40,7 @@ export default Vue.extend({
   name: "CourseImage",
   props: {
     value: {
+      // 接收父组件 v-model 传入的绑定数据
       type: String,
     },
     limit: {
@@ -43,7 +55,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    beforeAvatarUpload(file: any) {
+    beforeUpload(file: any) {
       const isJPG = file.type === "image/jpeg";
       const isLt2M = file.size / 1024 / 1024 < this.limit;
 
@@ -67,6 +79,8 @@ export default Vue.extend({
         if (data.code === "000000") {
           this.isUploading = false;
           this.percentage = 0;
+          // 修改 v-model 绑定的 course.courseListImg 必须 $emit `input` 事件
+          // $emit 函数的第二个参数是为 v-model 绑定的 course.courseListImg 赋的值
           this.$emit("input", data.data.name);
         } else {
           this.$message.error("上传失败");

@@ -47,16 +47,6 @@
       </div>
       <div v-show="activeStep === 1">
         <el-form-item label="课程封面">
-          <!--
-            upload 上传文件组件，它支持自动上传，你只需要把上传需要参数配置一下就可以了
-            -->
-          <!--
-            1. 组件需要根据绑定的数据进行图片预览
-            2. 组件需要把上传成功的图片地址同步到绑定的数据中
-            v-model 的本质还是父子组件通信
-              1. 它会给子组件传递一个名字叫 value 的数据（Props）
-              2. 默认监听 input 事件，修改绑定的数据（自定义事件）
-            -->
           <course-image v-model="course.courseListImg" :limit="5" />
         </el-form-item>
         <el-form-item label="介绍封面">

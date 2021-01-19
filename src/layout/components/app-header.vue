@@ -3,8 +3,6 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-      <el-breadcrumb-item>活动详情</el-breadcrumb-item>
     </el-breadcrumb>
     <el-dropdown>
       <span class="el-dropdown-link">
@@ -32,7 +30,7 @@ export default Vue.extend({
   name: "AppHeader",
   data() {
     return {
-      userInfo: {}
+      userInfo: {},
     };
   },
   created() {
@@ -48,7 +46,7 @@ export default Vue.extend({
       this.$confirm("确认退出吗?", "提示退出", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
+        type: "warning",
       })
         .then(() => {
           // 清楚登录状态
@@ -57,17 +55,17 @@ export default Vue.extend({
           this.$router.push({ name: "login" });
           this.$message({
             type: "success",
-            message: "成功退出"
+            message: "成功退出",
           });
         })
         .catch(() => {
           this.$message({
             type: "info",
-            message: "退出取消"
+            message: "退出取消",
           });
         });
-    }
-  }
+    },
+  },
 });
 </script>
 
