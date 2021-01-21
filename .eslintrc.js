@@ -23,7 +23,8 @@ module.exports = {
     quotes: ["warn", "double"],
     "comma-dangle": ["off", "always"],
     indent: 0,
-    "space-before-function-paren": ["warn", "never"],
+    "space-before-function-paren": 0,
+    "no-unused-expressions": 1,
     // 配置 TS 效验规则：查询文档 https://github.com/vuejs/eslint-config-typescript#readme
     "@typescript-eslint/member-delimiter-style": [
       "error",

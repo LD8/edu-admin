@@ -42,7 +42,20 @@
             <el-button @click="handleShowEditLesson(data, node.parent.data)"
               >编辑</el-button
             >
-            <el-button type="success">上传视频</el-button>
+            <el-button
+              type="success"
+              @click="
+                $router.push({
+                  name: 'course-video',
+                  params: { courseId },
+                  query: {
+                    sectionId: node.parent.id,
+                    lessonId: data.id
+                  }
+                })
+              "
+              >上传视频</el-button
+            >
             <el-select
               class="select-status"
               v-model="data.status"
@@ -140,7 +153,7 @@ import Vue from "vue";
 import {
   getSectionAndLesson,
   saveOrUpdateSection,
-  getSectionById,
+  getSectionById
 } from "@/services/course-section";
 import { getCourseById } from "@/services/course";
 import { Form } from "element-ui";
@@ -151,15 +164,15 @@ export default Vue.extend({
   props: {
     courseId: {
       type: [String, Number],
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     const defaultProps = {
       children: "lessonDTOS",
       label(data: any) {
         return data.sectionName || data.theme;
-      },
+      }
     };
 
     const section = {
@@ -167,7 +180,7 @@ export default Vue.extend({
       sectionName: "",
       description: "",
       orderNum: 0,
-      status: 0,
+      status: 0
     };
 
     const lesson = {
@@ -178,7 +191,7 @@ export default Vue.extend({
       duration: 0,
       isFree: false,
       orderNum: 0,
-      status: 0,
+      status: 0
     };
 
     return {
@@ -189,7 +202,7 @@ export default Vue.extend({
       section,
       isAddLessonShow: false,
       lesson,
-      isLoading: false,
+      isLoading: false
     };
   },
 
@@ -216,7 +229,7 @@ export default Vue.extend({
         sectionName: "",
         description: "",
         orderNum: 0,
-        status: 0,
+        status: 0
       };
       this.isAddSectionShow = true;
     },
@@ -246,7 +259,6 @@ export default Vue.extend({
     },
 
     handleShowAddLesson(data: any) {
-      console.log(data);
       this.lesson = {
         sectionName: data.sectionName,
         sectionId: data.id,
@@ -255,7 +267,7 @@ export default Vue.extend({
         duration: 0,
         isFree: false,
         orderNum: 0,
-        status: 0,
+        status: 0
       };
       this.isAddLessonShow = true;
     },
@@ -293,13 +305,13 @@ export default Vue.extend({
               // 阶段
               return saveOrUpdateSection({
                 id: item.data.id,
-                orderNum: index + 1,
+                orderNum: index + 1
               });
             } else {
               // 课时
               return saveOrUpdateLesson({
                 id: item.data.id,
-                orderNum: index + 1,
+                orderNum: index + 1
               });
             }
           })
@@ -310,8 +322,8 @@ export default Vue.extend({
         this.$message.error("排序失败");
       }
       this.isLoading = false;
-    },
-  },
+    }
+  }
 });
 </script>
 
